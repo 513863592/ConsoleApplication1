@@ -48,7 +48,8 @@ int main() {
 			}
 		}
 			t--;
+			cout << output << endl;
 	}
-	cout << output << endl;
+	
 	return 0;
 }
