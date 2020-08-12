@@ -1,55 +1,46 @@
 #include <iostream>
 #include <map>
-using namespace std;	
-int main() {
-	int t = 0;
-	cin >> t;
-	int n;
-	int a = 0, b = 0, c = 0;
-	int half = 0;
-	int la = 0, sm = 0;
-	int result = 0;
-	int total = 0;
-	int output = 1;
-	map <int, int> ABC;
-	while(t > 0){
-		cin >> n;
-		half = n / 2;
-		while(n > 0){
-			cin >> a;
-			cin >> b;
-			cin >> c;
-			b = b * 10 + c;
-			ABC.insert(pair<int, int>(a, b));
-			n--;
+#include <unordered_set>
+#include <stack>
+#include <vector>
+#include <set>
+#include <unordered_map>
+using namespace std;
+
+bool Check(vector<string>& combi) {
+	set<int> alaph;
+	unordered_map<char, int> all;
+	for (int i = 0; i < 7; i++) {
+		alaph.insert(combi[i].at(0));
+		char ch = combi[i].at(1);
+		if ((all.find(ch)) != all.end()) {
+			all.find(ch)->second++;
 		}
-		map<int, int>::iterator iter;
-		for (int j = 1; j <= half; j++) {
-			for (iter = ABC.begin(); iter != ABC.end(); iter++) {
-			if (((iter->second))/10 == j) {
-				if (((iter->second ) % 10) == 0) {
-					sm = iter->first;
-				}
-			}
-			if (((iter->second) - 1) / 10 == j) {
-				if (((iter->second-1) % 10) == 0){
-				la = iter->first;
-				}
-			}
-			result = la - sm;
-			if (result > total) {
-				total = result;
-				if (result = total) {
-					if (j < output) {
-						output = j;
-					}
-				}
-						}
-			}
-		}
-			t--;
-			cout << output << endl;
+		else all.insert({ ch,0 });
+
 	}
-	
-	return 0;
+	if (alaph.size() != combi.size()) {
+		return false;
+	}
+	else if(all.count('T')==0||all.count('W'==0)
+		||all.count('B'==0))
+	{		return false;	}	else {		return true;	}
+}
+int main() {
+	string A = "YES";	string B = "NO";vector<string> out;
+	int Sam; cin >> Sam; int allsam = Sam * 7;
+	vector<string> Exam; while (allsam > 0) {
+		string te;
+		cin >> te; Exam.push_back(te); te.clear(); allsam--;
+	}
+	for (int i = 0; i < Sam; i++) {
+		vector<string> tt;
+		for (int j = 0; j < 7; j++) {
+			tt.push_back(Exam[i * 7 + j]);
+		}out.push_back(Check(tt) ? A : B);    tt.clear();
+
+	}
+	for (auto& item : out) {
+		cout << item << endl;
+	}
 }
